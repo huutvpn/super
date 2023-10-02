@@ -7,8 +7,8 @@ MYIP=$(wget -qO- ipinfo.io/ip);
 clear
 apt install jq curl -y >/dev/null 2>&1
 DOMAIN=madurakocak.my.id
-sub=$(</dev/urandom tr -dc a-x1-9 | head -c5 | tr -d '\r' | tr -d '\r\n')
-SUB_DOMAIN=${sub}.madurakocak.my.id
+sub=$(</dev/urandom tr -dc a-x1-9 | head -c4 | tr -d '\r' | tr -d '\r\n')
+SUB_DOMAIN=${sub}vip.madurakocak.my.id
 CF_ID=shabudin039@gmail.com
 CF_KEY=746762286a7ac6f54e7c51565e2b19a4c1ab8
 set -euo pipefail
@@ -38,7 +38,7 @@ RESULT=$(curl -sLX PUT "https://api.cloudflare.com/client/v4/zones/${ZONE}/dns_r
      -H "Content-Type: application/json" \
      --data '{"type":"A","name":"'${SUB_DOMAIN}'","content":"'${IP}'","ttl":120,"proxied":false}')
 echo "Host : $SUB_DOMAIN"
-echo "IP=" >> /var/lib/huutvpn/ipvps.conf
+echo "IP=" >> /var/lib/SIJA/ipvps.conf
 echo $SUB_DOMAIN > /etc/xray/domain
 echo $SUB_DOMAIN > /root/domain
 rm -f /root/cf.sh
